@@ -1,0 +1,53 @@
+/* src/features/auth/styles/auth.css */
+
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600&display=swap");
+
+.auth-root {
+  font-family: "DM Sans", sans-serif;
+}
+.brand-font {
+  font-family: "Lora", Georgia, serif;
+}
+
+/* staggered field reveal */
+.field-row {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+.fields-ready .field-row {
+  opacity: 1;
+  transform: none;
+}
+.field-row:nth-child(1) {
+  transition-delay: 0.05s;
+}
+.field-row:nth-child(2) {
+  transition-delay: 0.12s;
+}
+.field-row:nth-child(3) {
+  transition-delay: 0.19s;
+}
+.field-row:nth-child(4) {
+  transition-delay: 0.26s;
+}
+.field-row:nth-child(5) {
+  transition-delay: 0.33s;
+}
+
+.form-panel {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+.form-panel.leaving {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.strength-bar {
+  transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
