@@ -2,7 +2,7 @@ import { UserProvider, useUser } from "../context/UserContext";
 import { AuthPage } from "../features/auth/components/AuthPage";
 import { Toaster } from "../components/ui/sonner";
 import { AppLoading } from "../components/layout/AppLoading";
-// import { ChatApp } from "../features/chat/components/ChatApp";
+import { ChatApp } from "../features/chat/components/ChatApp";
 import { ProfileSetup } from "../features/auth/components/ProfileSetup";
 
 function AppContent() {
@@ -12,7 +12,7 @@ function AppContent() {
   if (!user) return <AuthPage />;
 
   if (!user.profileSetup) return <ProfileSetup />;
-  // return <ChatApp />;
+  return <ChatApp />;
 
   //temporary placeholder until we build the main app
   return (

@@ -65,8 +65,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
     } else {
       disconnectSocket();
     }
-
-    return () => disconnectSocket();
   }, [user]);
 
   const value = useMemo(

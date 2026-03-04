@@ -7,11 +7,17 @@ export const initializeSocket = () => {
   if (!socket) {
     socket = io(SERVER_URL, {
       withCredentials: true,
+      autoConnect: false,
       extraHeaders: {
         "ngrok-skip-browser-warning": "true",
       },
     });
   }
+
+  if (!socket.connected) {
+    socket.connect();
+  }
+
   return socket;
 };
 
