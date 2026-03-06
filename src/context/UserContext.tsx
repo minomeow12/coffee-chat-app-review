@@ -61,7 +61,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   // 🔹 Socket lifecycle tied to auth state
   useEffect(() => {
     if (user) {
-      initializeSocket();
+      initializeSocket(user.id);
     } else {
       disconnectSocket();
     }

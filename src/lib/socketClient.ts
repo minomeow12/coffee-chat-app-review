@@ -1,31 +1,44 @@
 import { io, Socket } from "socket.io-client";
-import { SERVER_URL } from "./apiClient";
+
+const SERVER_URL = "https://pretorial-portliest-vertie.ngrok-free.dev";
 
 let socket: Socket | null = null;
 
-export const initializeSocket = () => {
-  if (!socket) {
-    socket = io(SERVER_URL, {
-      withCredentials: true,
-      autoConnect: false,
-      extraHeaders: {
-        "ngrok-skip-browser-warning": "true",
-      },
-    });
+export function initializeSocket(userId?: string) {
+  if (socket && socket.connected) {
+    console.log("♻️ Reusing existing socket:", socket.id);
+    return socket; // ← still returns, ChatApp will attach listener
   }
 
-  if (!socket.connected) {
-    socket.connect();
-  }
+  if (socket) socket.disconnect();
+
+  socket = io(SERVER_URL, {
+    withCredentials: true,
+    transports: ["websocket"],
+    autoConnect: true,
+    query: { userId },
+  });
+
+  socket.on("connect", () => {
+    console.log("✅ CONNECTED:", socket?.id);
+    (window as any)._debug_socket = socket;
+  });
+
+  socket.on("disconnect", (reason) => {
+    console.log("❌ DISCONNECTED:", reason);
+  });
 
   return socket;
-};
+}
 
-export const getSocket = () => socket;
+export function getSocket() {
+  return socket;
+}
 
-export const disconnectSocket = () => {
+export function disconnectSocket() {
   if (socket) {
     socket.disconnect();
     socket = null;
+    console.log("🔌 Socket manually disconnected");
   }
-};
+}
