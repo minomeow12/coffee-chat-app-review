@@ -11,3 +11,7 @@ export async function fetchUserInfo() {
   if (!u || typeof u !== "object") return null;
   return u;
 }
+
+export async function logout() {
+  await apiClient.post("/api/auth/logout");
+}

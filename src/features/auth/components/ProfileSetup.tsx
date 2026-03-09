@@ -57,14 +57,13 @@ export function ProfileSetup() {
       await apiClient.post("/api/auth/update-profile", {
         firstName: firstName.trim(),
         lastName: lastName.trim(),
-        color: selectedAvatar.fallbackColor, // number index
+        color: selectedAvatar.fallbackColor, // ✅ back to number (0-5)
       });
 
-      // ✅ Store avatar choice locally (since backend may not support avatarUrl)
+      // ✅ Keep storing image path in localStorage
       if (user?.id) {
         localStorage.setItem(`meowclub_avatar_${user.id}`, selectedAvatar.src);
       }
-
       await refreshUser();
       toast.success("Profile updated!");
     } catch (error: any) {
