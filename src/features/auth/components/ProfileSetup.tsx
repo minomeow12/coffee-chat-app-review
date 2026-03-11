@@ -64,6 +64,7 @@ export function ProfileSetup() {
       if (user?.id) {
         localStorage.setItem(`meowclub_avatar_${user.id}`, selectedAvatar.src);
       }
+
       await refreshUser();
       toast.success("Profile updated!");
     } catch (error: any) {

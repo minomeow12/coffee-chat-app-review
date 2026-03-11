@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "target": "ES2018",
+    "lib": ["ES2018", "DOM"]
+  },
+  "include": ["src", "**/*.test.ts", "**/*.test.tsx", "jest.config.*"]
+}
